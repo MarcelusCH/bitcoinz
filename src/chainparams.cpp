@@ -432,10 +432,16 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
+        // fMiningRequiresPeers = true;
+        // fDefaultConsistencyChecks = false;
+        // fRequireStandard = true;
+        // fMineBlocksOnDemand = false;
+        // fTestnetToBeDeprecatedFieldRPC = true;
+
         fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
-        fRequireStandard = true;
-        fMineBlocksOnDemand = false;
+        fRequireStandard = false;
+        fMineBlocksOnDemand = true;
         fTestnetToBeDeprecatedFieldRPC = true;
 
 
