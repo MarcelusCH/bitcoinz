@@ -1,4 +1,4 @@
-# BitcoinZ 2.1.0
+# BitcoinZ 2.1.0 | MANDO
 **Keep running wallet to strengthen the BitcoinZ network. Backup your wallet in many locations & keep your coins wallet offline.**
 
 ### Ports:
@@ -62,6 +62,12 @@ apt-get update \
     curl build-essential pkg-config libc6-dev m4 g++-multilib autoconf \
     libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils \
     automake p7zip-full pwgen mingw-w64 cmake
+```
+
+Choose the posix alternate from these commands:
+```
+update-alternatives --config x86_64-w64-mingw32-gcc
+update-alternatives --config x86_64-w64-mingw32-g++
 ```
 
 Execute the build command:

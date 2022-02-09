@@ -466,13 +466,54 @@ void ThreadShowMetricsScreen()
         std::cout << "\e[2J";
 
         // Print art
-        std::cout << METRICS_ART << std::endl;
-        std::cout << std::endl;
+        //std::cout << METRICS_ART << std::endl;
+        //std::cout << std::endl;
 
         // Thank you text
-        std::cout << _("BTCZ Node Version 2.1.0 (YODA) - Protocol 770009") << std::endl;
-        std::cout << strprintf(_("Thank you for running a %s BitcoinZ node!"), WhichNetwork()) << std::endl;
-        std::cout << _("You're helping to strengthen the network and contributing to a social good :)") << std::endl;
+        //std::cout << _("BTCZ Node Version 2.1.0 (MANDO) - Protocol 770009") << std::endl;
+        std::cout << strprintf(_("\n"
+        // "\n           |~"
+        // "\n           |.---.           █▄▄ █ ▀█▀ █▀▀ █▀█ █ █▄░█ ▀█"
+        // "\n          .'_____`. /\\      █▄█ █ ░█░ █▄▄ █▄█ █ █░▀█ █▄"
+        // "\n          |~xxxxx~| ||"
+        // "\n          |_  #  _| ||      █▄█ █▀█ █░█ █▀█   █▀▀ █ █▄░█ ▄▀█ █▄░█ █▀▀ █ ▄▀█ █░░ "
+        // "\n     .------`-#-'-----.     ░█░ █▄█ █▄█ █▀▄   █▀░ █ █░▀█ █▀█ █░▀█ █▄▄ █ █▀█ █▄▄ "
+        // "\n    (___|\\_________/|_.`."
+        // "\n     /  | _________ | | |   █▀▀ █▀█ █▀▀ █▀▀ █▀▄ █▀█ █▀▄▀█"
+        // "\n    /   |/   _|_   \\| | |   █▀░ █▀▄ ██▄ ██▄ █▄▀ █▄█ █░▀░█"
+        // "\n   /   /X|  __|__  |/ `.|"
+        // "\n  (  --< \\/    _\\//|_ |`."
+        // "\n  `.    ~----.-~=====,:======="
+        // "\n    ~-._____/___:__(``/| |"
+        // "\n      |    |      XX|~ | |"
+        // "\n       \\__/======| /|  `.|"
+        // "\n       |_\\|\\    /|/_|    )"
+        // "\n       |_   \\__/   _| .-'    %s "
+        // "\n       | \\ .'||`. / |(_|"
+        // "\n       |  ||.'`.||  |   )    BTCZ Node Version 2.1.0 "
+        // "\n       |  `'|  |`'  |  /     Protocol 770009"
+        // "\n       |    |  |    |\\/      MANDO"
+        // "\n"
+        // "\n"
+        // "\n  In decentralization we trust."
+        // "\n  You're helping to strengthen the network and contributing to a social good :)"
+        // "\n\n"
+
+        "\n           |~"
+        "\n           |.---.              __ _ _____ ___ __  _ __  _ ___   "
+        "\n          .'_____`. /\\        |  \\ |_   _/ _//__\\| |  \\| |_  | "
+        "\n          |~xxxxx~| ||        | -< | | || \\_| \\/ | | | ' |/ /  "
+        "\n          |_  #  _| ||        |__/_|_|_|_\\__/\\__/|_|_|\\__|___| "
+        "\n     .------`-#-'-----.     "
+        "\n    (___|\\_________/|_.`.     BTCZ Node Version 2.1.0 (MANDO)"
+        "\n     /  | _________ | | |     Protocol 770009"
+        "\n    /   |/   _|_   \\| | |     Network: %s "
+        "\n"
+        "\n  YOUR FINANCIAL FREEDOM."
+        "\n  You're helping to strengthen the network and contributing to a social good :)"
+        "\n\n"
+        ), WhichNetwork()) << std::endl;
+        //std::cout << _("You're helping to strengthen the network and contributing to a social good :)") << std::endl;
     }
 
     while (true) {

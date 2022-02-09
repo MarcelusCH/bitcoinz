@@ -79,4 +79,6 @@ void ThreadShowMetricsScreen();
  * Rendering options:
  * Logo: img2txt -W 90 -H 20 -f utf8 -d none -g design.png >> design.ansi
  */
-const std::string METRICS_ART = "\n\nBitcoinZ - Your Financial Freedom\n\n";
+
+
+//const std::string METRICS_ART = "";
