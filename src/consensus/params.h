@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
+// Copyright (c) 2022 The BitcoinZ community
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php .
 
@@ -74,8 +75,8 @@ struct NetworkUpgrade {
 };
 
 /** ZIP208 block target interval in seconds. */
-static const unsigned int PRE_BLOSSOM_POW_TARGET_SPACING = 5;
-static const unsigned int POST_BLOSSOM_POW_TARGET_SPACING = 5;
+static const unsigned int PRE_BLOSSOM_POW_TARGET_SPACING = 20;
+static const unsigned int POST_BLOSSOM_POW_TARGET_SPACING = 20;
 static_assert(POST_BLOSSOM_POW_TARGET_SPACING <= PRE_BLOSSOM_POW_TARGET_SPACING, "Blossom target spacing must be less than pre-Blossom target spacing.");
 static const unsigned int PRE_BLOSSOM_HALVING_INTERVAL = 840000;
 static const unsigned int PRE_BLOSSOM_REGTEST_HALVING_INTERVAL = 150;

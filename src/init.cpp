@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
+// Copyright (c) 2022 The BitcoinZ community
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php .
 
@@ -464,6 +465,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-debug=<category>", strprintf(_("Output debugging information (default: %u, supplying <category> is optional)"), 0) + ". " +
         _("If <category> is not supplied or if <category> = 1, output all debugging information.") + " " + _("<category> can be:") + " " + debugCategories + ".");
     strUsage += HelpMessageOpt("-experimentalfeatures", _("Enable use of experimental features"));
+    strUsage += HelpMessageOpt("-DisablePoWcheck", _("TESTNET ONLY ! Disable the PoW check and stop validation the block headers."));
     strUsage += HelpMessageOpt("-help-debug", _("Show all debugging options (usage: --help -help-debug)"));
     strUsage += HelpMessageOpt("-logips", strprintf(_("Include IP addresses in debug output (default: %u)"), 0));
     strUsage += HelpMessageOpt("-logtimestamps", strprintf(_("Prepend debug output with timestamp (default: %u)"), 1));
@@ -836,6 +838,9 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
 
     // ********************************************************* Step 2: parameter interactions
     const CChainParams& chainparams = Params();
+
+    // For testnet only. Disable the PoW check to be able to reindex after params changes.
+    fDisablePoWcheck = GetBoolArg("-DisablePoWcheck", false);
 
     // Set this early so that experimental features are correctly enabled/disabled
     fExperimentalMode = GetBoolArg("-experimentalfeatures", false);

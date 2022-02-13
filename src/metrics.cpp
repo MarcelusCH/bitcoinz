@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The BitcoinZ community
+// Copyright (c) 2022 The BitcoinZ community
 // Copyright (c) 2016 The Zcash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php .
@@ -310,7 +310,9 @@ int printMetrics(size_t cols, bool mining)
     lines += (strDuration.size() / cols);
 
     int validatedCount = transactionsValidated.get();
-    if (validatedCount > 1) {
+    if (GetBoolArg("-DisablePoWcheck", false) && GetBoolArg("-testnet", false)) { // Disable validation if testnet and defined
+      std::cout << "- " << _("PoW check is disabled! You not validating any transaction!") << std::endl;
+    } else if (validatedCount > 1) {
       std::cout << "- " << strprintf(_("You have validated %d transactions!"), validatedCount) << std::endl;
     } else if (validatedCount == 1) {
       std::cout << "- " << _("You have validated a transaction!") << std::endl;
@@ -472,40 +474,13 @@ void ThreadShowMetricsScreen()
         // Thank you text
         //std::cout << _("BTCZ Node Version 2.1.0 (MANDO) - Protocol 770009") << std::endl;
         std::cout << strprintf(_("\n"
-        // "\n           |~"
-        // "\n           |.---.           █▄▄ █ ▀█▀ █▀▀ █▀█ █ █▄░█ ▀█"
-        // "\n          .'_____`. /\\      █▄█ █ ░█░ █▄▄ █▄█ █ █░▀█ █▄"
-        // "\n          |~xxxxx~| ||"
-        // "\n          |_  #  _| ||      █▄█ █▀█ █░█ █▀█   █▀▀ █ █▄░█ ▄▀█ █▄░█ █▀▀ █ ▄▀█ █░░ "
-        // "\n     .------`-#-'-----.     ░█░ █▄█ █▄█ █▀▄   █▀░ █ █░▀█ █▀█ █░▀█ █▄▄ █ █▀█ █▄▄ "
-        // "\n    (___|\\_________/|_.`."
-        // "\n     /  | _________ | | |   █▀▀ █▀█ █▀▀ █▀▀ █▀▄ █▀█ █▀▄▀█"
-        // "\n    /   |/   _|_   \\| | |   █▀░ █▀▄ ██▄ ██▄ █▄▀ █▄█ █░▀░█"
-        // "\n   /   /X|  __|__  |/ `.|"
-        // "\n  (  --< \\/    _\\//|_ |`."
-        // "\n  `.    ~----.-~=====,:======="
-        // "\n    ~-._____/___:__(``/| |"
-        // "\n      |    |      XX|~ | |"
-        // "\n       \\__/======| /|  `.|"
-        // "\n       |_\\|\\    /|/_|    )"
-        // "\n       |_   \\__/   _| .-'    %s "
-        // "\n       | \\ .'||`. / |(_|"
-        // "\n       |  ||.'`.||  |   )    BTCZ Node Version 2.1.0 "
-        // "\n       |  `'|  |`'  |  /     Protocol 770009"
-        // "\n       |    |  |    |\\/      MANDO"
-        // "\n"
-        // "\n"
-        // "\n  In decentralization we trust."
-        // "\n  You're helping to strengthen the network and contributing to a social good :)"
-        // "\n\n"
-
         "\n           |~"
         "\n           |.---.              __ _ _____ ___ __  _ __  _ ___   "
         "\n          .'_____`. /\\        |  \\ |_   _/ _//__\\| |  \\| |_  | "
         "\n          |~xxxxx~| ||        | -< | | || \\_| \\/ | | | ' |/ /  "
         "\n          |_  #  _| ||        |__/_|_|_|_\\__/\\__/|_|_|\\__|___| "
         "\n     .------`-#-'-----.     "
-        "\n    (___|\\_________/|_.`.     BTCZ Node Version 2.1.0 (MANDO)"
+        "\n    (___|\\_________/|_.`.     BTCZ Node Version 2.1.0 (MANDO) | TU:2"
         "\n     /  | _________ | | |     Protocol 770009"
         "\n    /   |/   _|_   \\| | |     Network: %s "
         "\n"

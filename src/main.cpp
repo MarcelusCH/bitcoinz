@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
+// Copyright (c) 2022 The BitcoinZ community
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php .
 
@@ -79,6 +80,7 @@ bool fCoinbaseEnforcedProtectionEnabled = true;
 size_t nCoinCacheUsage = 5000 * 300;
 uint64_t nPruneTarget = 0;
 bool fAlerts = DEFAULT_ALERTS;
+bool fDisablePoWcheck = false;
 /* If the tip is older than this (in seconds), the node is considered to be in initial block download.
  */
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
@@ -3971,10 +3973,20 @@ bool ContextualCheckBlockHeader(
                 REJECT_INVALID,"bad-equihash-solution-size");
     }
 
+
+
+
     // Check proof of work
-    if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams))
-        return state.DoS(100, error("%s: incorrect proof of work", __func__),
-                         REJECT_INVALID, "bad-diffbits");
+    if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams) ) {
+
+      // Always check in mainet. Can only be disabled if specified.
+      if (!(chainParams.DisablePoWcheck() && fDisablePoWcheck) || chainParams.NetworkIDString() == "main" ) {
+        return state.DoS(100, error("%s: incorrect proof of work", __func__), REJECT_INVALID, "bad-diffbits");
+      }
+    }
+
+
+
 
     // Check timestamp against prev
     if (block.GetBlockTime() <= pindexPrev->GetMedianTimePast())

@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
-// Copyright (c) 2020 The BitcoinZ community
+// Copyright (c) 2022 The BitcoinZ community
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php .
 
@@ -365,18 +365,19 @@ public:
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 770006;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1500;
-        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].hashActivationBlock =
-        //    uint256S("0001bd0b788908fe416ac3c2909735bccb8c79b591e76a359ec657a97fb48a6d");
+        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].hashActivationBlock =
+            uint256S("0002577930e1d2af95e6bb1ed894110874c961afb57db5fdfed63b2a7b4379e3");
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 770006;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 1500;
-        //consensus.vUpgrades[Consensus::UPGRADE_SAPLING].hashActivationBlock =
-        //    uint256S("0001bd0b788908fe416ac3c2909735bccb8c79b591e76a359ec657a97fb48a6d");
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].hashActivationBlock =
+            uint256S("0002577930e1d2af95e6bb1ed894110874c961afb57db5fdfed63b2a7b4379e3");
         consensus.vUpgrades[Consensus::UPGRADE_BLOSSOM].nProtocolVersion = 770009;
-        consensus.vUpgrades[Consensus::UPGRADE_BLOSSOM].nActivationHeight = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_BLOSSOM].nActivationHeight =
+            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
         // The best chain should have at least this much work.
-        //consensus.nMinimumChainWork = uint256S("000000000000000000000000000000000000000000000000000000000470fb4c");
-        consensus.nMinimumChainWork = uint256S("0x00");
+        consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000010894"); // blk 2100
+        //consensus.nMinimumChainWork = uint256S("0x00");
 
         pchMessageStart[0] = 0xfa;
         pchMessageStart[1] = 0x1a;
@@ -409,7 +410,7 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        //vSeeds.push_back(CDNSSeedData("6be074a62041bb2bee54f8c48ef41bac55c44b0e1f49aef7c319d992844667c2.TZB", "test.seed.btcz.app"));
+        vSeeds.push_back(CDNSSeedData("6be074a62041bb2bee54f8c48ef41bac55c44b0e1f49aef7c319d992844667c2.TZB", "test.seed.btcz.app"));
         //vSeeds.push_back(CDNSSeedData("rotorproject.org", "test-dnsseed.rotorproject.org")); // Zclassic
 
         // guarantees the first 2 characters, when base58 encoded, are "tm"
@@ -440,6 +441,7 @@ public:
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = true;
+        bDisablePoWcheck = true;
 
 
         checkpointData = (CCheckpointData) {
@@ -453,10 +455,11 @@ public:
         // Hardcoded fallback value for the Sprout shielded value pool balance
         // for nodes that have not reindexed since the introduction of monitoring
         // in #2795.
-        //nSproutValuePoolCheckpointHeight = 21000;
-        //nSproutValuePoolCheckpointBalance = 825099960000;
+        nSproutValuePoolCheckpointHeight = 2100;
+        nSproutValuePoolCheckpointBalance = 0;
         fZIP209Enabled = true;
         //hashSproutValuePoolCheckpointBlock = uint256S("00360d4e02fbea84aa687722584e24bdc94dd7b768f35b095d453d81c0469d3a");
+        hashSproutValuePoolCheckpointBlock = uint256S("0000000000000000000000000000000000000000000000000000000000010894");
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
         vCommunityFeeAddress = {

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
-// Copyright (c) 2020 The BitcoinZ community
+// Copyright (c) 2022 The BitcoinZ community
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php .
 
@@ -103,6 +103,9 @@ public:
     int64_t MaxTipAge() const { return nMaxTipAge; }
     int64_t PruneAfterHeight() const { return nPruneAfterHeight; }
 
+    /**   */
+    bool DisablePoWcheck() const { return bDisablePoWcheck; }
+
     EHparameters eh_epoch_1_params() const { return eh_epoch_1; }
     EHparameters eh_epoch_2_params() const { return eh_epoch_2; }
     unsigned long eh_epoch_1_end() const { return eh_epoch_1_endblock; }
@@ -168,6 +171,8 @@ protected:
     uint256 hashSproutValuePoolCheckpointBlock;
     bool fZIP209Enabled = false;
     int vRollingCheckpointStartHeight;
+
+    bool bDisablePoWcheck = false;
 };
 
 /**
